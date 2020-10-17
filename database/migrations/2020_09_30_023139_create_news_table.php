@@ -13,12 +13,11 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) { //下記のカラムを持つｎｅｗｓというテーブルを作成
+        Schema::create('news', function (Blueprint $table) { //下記のカラムを持つｎｅｗｓというテーブルを作成
             $table->bigIncrements('id');
-            $table->string('name'); // ニュースのタイトルを保存するカラム
-            $table->string('gender');
-            $table->string('hobby');
-            $table->string('introduction');// ニュースの本文を保存するカラム
+            $table->string('title'); // ニュースのタイトルを保存するカラム
+            $table->string('body');
+            $table->string('image_path')->nullable();// ニュースの本文を保存するカラム
             $table->timestamps();
         });
     }
@@ -30,7 +29,7 @@ class CreateNewsTable extends Migration
      */
     public function down() //関数downには、マイグレーションの取り消しを行う為のコード
     {
-        Schema::dropIfExists('profile'); //関数downには、マイグレーションの取り消しを行う為のコード
+        Schema::dropIfExists('news'); //関数downには、マイグレーションの取り消しを行う為のコード
     }
 }      #  マグレーションを実行するコマンド　【　php artisan migrate　】
 # php artisan migrate:rollback  で直前に実行されたマイグレーションファイルのdown関数を実行し、テーブルが作成される前の状態に戻りました
