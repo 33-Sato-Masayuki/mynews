@@ -72,7 +72,7 @@ class ProfileController extends Controller
       return redirect('admin/profile');
     }
     
-     public function delete(Request $request)
+    public function delete(Request $request)
     {
       // 該当するNews Modelを取得
       $profile = Profile::find($request->id);
@@ -80,4 +80,20 @@ class ProfileController extends Controller
       $profile->delete();
       return redirect('admin/profile/');
     }  
+    
+    public function index(Request $request)
+    {
+      $cond_name = $request->cond_name;
+      if ($cond_name != '') {
+          // 検索されたら検索結果を取得する  
+          $posts = Profile::where('name', $cond_name)->get();
+      } else {
+          //$cond_title（ユーザーが入力した文字）で一致しない全てのレコードを取得する
+          $posts = Profile::all();
+      }
+      //index.blade.phpのファイルに取得したレコード（$posts）と
+      //      ユーザーが入力した文字列（$cond_title）を渡し、ページを開く
+      return view('admin.profile.index', ['posts' => $posts, 'cond_name' => $cond_name]);
+  }
+
 }

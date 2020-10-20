@@ -33,7 +33,9 @@
                             <tr>
                                 <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
-                                <th width="50%">本文</th>
+                                <th width="30%">本文</th>
+                                <th width="10%">作成日</th>
+                                <th width="10%">更新日</th>
                                 <th width="10%">操作</th>
                             </tr>
                         </thead>
@@ -46,6 +48,8 @@
                                      {{-- \Str::limit($news->title, 100)は、最大文字数１００文字（半角）、もしタイトルが全て全角なら最大50文字まで表示する --}}
                                     
                                     <td>{{ \Str::limit($news->body, 250) }}</td>
+                                    <th>{{ $news->created_at }}</th>
+                                    <th>{{ $news->updated_at }}</th>
                                     {{--\Str::limit()は、文字列を指定した数値で切り詰めるというメソッド--}}
                                     {{--注意してほしいのは切り詰める文字の数は半角で認識するようになり、全角の文字は2文字として認識される--}}
                                     {{-- 例） --}}
